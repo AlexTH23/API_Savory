@@ -3,8 +3,7 @@ const config = require('./app/config/config')
 const conexion = require('./app/config/conexion')
 const express = require('express');
 const path = require('path');
-const { swaggerUi, swaggerSpec } = require('./swagger/swagger');
-
+require('dotenv').config();
 
 
 conexion.connect()

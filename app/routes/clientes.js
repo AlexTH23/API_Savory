@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const savoryModelClientes = require('../models/savoryModel');
 const verificarToken = require('../Middlewares/auth');
+const savoryControllerUsers = require('../Controllers/savoryControllerUsers');
 
 router.get('/', verificarToken, async (req, res) => {
     try {
@@ -11,5 +12,6 @@ router.get('/', verificarToken, async (req, res) => {
         res.status(500).json({ error: err.message });
     }
 });
+router.post('/', savoryControllerUsers.agregarCliente);
 
 module.exports = router;

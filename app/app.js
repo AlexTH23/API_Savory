@@ -1,6 +1,7 @@
 const express =  require('express');
 const app = express();
 const routerMenu = require('./routes/menuRouter')
+const routerSavory = require('./routes/savoryrouter')
 const cors = require('cors')
 const fs = require('fs');
 const path = require('path');
@@ -23,5 +24,6 @@ app.use(cors({
   maxAge: 86400
 }));
 app.use('/savory', routerMenu);
+app.use('/savory',routerSavory)
 
 module.exports=app;

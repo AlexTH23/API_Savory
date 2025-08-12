@@ -1,4 +1,5 @@
 const savoryModel = require('../models/savoryModel')
+const bcrypt = require('bcryptjs');
 
 function buscarTodo(req, res) {
     savoryModel.find({})
@@ -12,6 +13,48 @@ function buscarTodo(req, res) {
         return res.status(404).send({ mensaje: `Error al solicitar la información ${e}` })
     })
 }
+async function agregarCliente(req, res) {
+    try {
+        const { usuario, password, email, nombreCompleto, direccion } = req.body;
+
+        if (!usuario || !password || !email || !nombreCompleto || !direccion) {
+            return res.status(400).send({ mensaje: "Todos los campos son obligatorios" });
+        }
+
+        const existeUsuario = await savoryModel.findOne({ usuario });
+        if (existeUsuario) {
+            return res.status(409).send({ mensaje: "El usuario ya existe" });
+        }
+
+        const hashedPassword = await bcrypt.hash(password, 10);
+
+        const nuevoCliente = new savoryModel({
+            usuario,
+            password: hashedPassword,
+            email,
+            nombreCompleto,
+            direccion
+        });
+
+        const clienteGuardado = await nuevoCliente.save();
+
+        return res.status(201).send({
+            mensaje: "Cliente registrado exitosamente",
+            cliente: {
+                id: clienteGuardado._id,
+                usuario: clienteGuardado.usuario,
+                email: clienteGuardado.email,
+                nombreCompleto: clienteGuardado.nombreCompleto,
+                direccion: clienteGuardado.direccion
+            }
+        });
+
+    } catch (error) {
+        console.error(error);
+        return res.status(500).send({ mensaje: "Error al registrar cliente", error: error.message });
+    }
+}
+
 
 function buscarcliente(req, res, next) {
     if (!req.body) req.body = {}
@@ -69,5 +112,6 @@ module.exports = {
     buscarcliente,
     mostrarClientes,
     eliminarClientes,
-    actualizarClientes
+    actualizarClientes,
+    agregarCliente
 }

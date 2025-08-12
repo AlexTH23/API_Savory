@@ -38,6 +38,52 @@ router.get('/clientes',verifyToken, savoryControllerUsers.buscarTodo);
 
 /**
  * @swagger
+ * /clientes:
+ *   post:
+ *     summary: Registrar un nuevo cliente
+ *     tags: [Clientes]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - usuario
+ *               - password
+ *               - email
+ *               - nombreCompleto
+ *               - direccion
+ *             properties:
+ *               usuario:
+ *                 type: string
+ *                 example: juan123
+ *               password:
+ *                 type: string
+ *                 example: 123456
+ *               email:
+ *                 type: string
+ *                 example: juan@example.com
+ *               nombreCompleto:
+ *                 type: string
+ *                 example: Juan Pérez
+ *               direccion:
+ *                 type: string
+ *                 example: Calle Falsa 123
+ *     responses:
+ *       201:
+ *         description: Cliente registrado exitosamente
+ *       400:
+ *         description: Faltan datos obligatorios
+ *       409:
+ *         description: El usuario ya existe
+ *       500:
+ *         description: Error interno al registrar el cliente
+ */
+router.post('/', savoryControllerUsers.agregarCliente);
+
+/**
+ * @swagger
  * /clientes/{key}/{value}:
  *   get:
  *     summary: Buscar y mostrar clientes

@@ -13,7 +13,11 @@ const options = {
       {
         url: 'http://localhost:3000/savory',
         description: 'Servidor localhost',
-      }
+      },
+      {
+        url: 'https://oyster-app-ea4pe.ondigitalocean.app/savory',
+        description: 'Servidor online',
+      },
     ],
   },
   apis: ['./app/routes/*.js', './swagger/*.js'], // Rutas con anotaciones swagger

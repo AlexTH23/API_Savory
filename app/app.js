@@ -4,16 +4,13 @@ const routerMenu = require('./routes/menuRouter')
 const cors = require('cors')
 const fs = require('fs');
 const path = require('path');
-const setupSwagger = require('../swagger');
+const setupSwagger = require('../swagger/swagger');
 
 
 
 app.use(express.urlencoded({extended:false}));
 app.use (express.json());
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
-
-// Configuración Swagger
-setupSwagger(app);
 
 app.use(cors({
   origin: '*',

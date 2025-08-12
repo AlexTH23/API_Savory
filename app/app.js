@@ -12,6 +12,9 @@ app.use(express.urlencoded({extended:false}));
 app.use (express.json());
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
+// Configuración Swagger
+setupSwagger(app);
+
 app.use(cors({
   origin: '*',
   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],

@@ -5,7 +5,7 @@ const options = {
   definition: {
     openapi: '3.0.0',
     info: {
-      title: 'API de Libros - LIEBRERO',
+      title: 'API de restaurante Savory',
       version: '1.0.0',
       description: 'API CRUD para la gestión de libros',
     },

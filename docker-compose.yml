@@ -6,7 +6,7 @@ services:
     depends_on:
       - mongo
     environment:
-      - MONGO_URL=mongodb://mongo:27017/restaurante_savory
+      - MONGODB_URI=mongodb+srv://dbAdmin:AdminSavory123@cluster0.4nqhgbl.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
     volumes:
       - .:/app
 

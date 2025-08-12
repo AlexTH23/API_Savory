@@ -11,9 +11,9 @@ const options = {
     },
     servers: [
       {
-        url: 'http://localhost:3000',
-        description: 'Servidor local',
-      },
+        url: 'http://localhost:3000/savory',
+        description: 'Servidor localhost',
+      }
     ],
   },
   apis: ['./app/routes/*.js', './swagger/*.js'], // Rutas con anotaciones swagger

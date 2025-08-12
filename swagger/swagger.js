@@ -7,7 +7,7 @@ const options = {
     info: {
       title: 'API de restaurante Savory',
       version: '1.0.0',
-      description: 'API CRUD para la gestión de libros',
+      description: 'API creada para la aplicación de restaurante Savory',
     },
     servers: [
       {
@@ -16,12 +16,14 @@ const options = {
       },
     ],
   },
-  apis: ['./app/routes/*.js', './swagger/*.js'], // Archivos donde están las anotaciones Swagger
+  apis: ['./app/routes/*.js', './swagger/*.js'], // Rutas con anotaciones swagger
 };
 
 const swaggerSpec = swaggerJSDoc(options);
 
-module.exports = {
-  swaggerUi,
-  swaggerSpec,
-};
+// Función que configura Swagger en la app Express
+function setupSwagger(app) {
+  app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+}
+
+module.exports = setupSwagger;

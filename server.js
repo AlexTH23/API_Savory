@@ -11,10 +11,6 @@ conexion.connect()
 
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
-
-//Swagger middleware
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
-
 app.listen(config.PORT, '0.0.0.0', () =>{
     console.log(`Aplicacion corriendo en puerto ${config.PORT}`);
 })
